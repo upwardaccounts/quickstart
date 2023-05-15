@@ -8,7 +8,7 @@ require 'json'
 require 'plaid'
 require 'sinatra'
 
-set :port, ENV['APP_PORT'] || 3000
+set :port, ENV['PORT'] || 3000
 
 # disable CSRF warning on localhost due to usage of local /api proxy in react app.
 # delete this for a production application.

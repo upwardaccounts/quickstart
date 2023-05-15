@@ -9,7 +9,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY .npmrc ./
-COPY .package*.json ./
+COPY package*.json ./
 RUN npm install
 
 # add app

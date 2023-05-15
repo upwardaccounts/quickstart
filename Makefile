@@ -29,3 +29,19 @@ stop build:
 		$@ \
 		$(language) frontend
 
+
+.PHONY: build-heroku-api
+build-heroku-api:
+	docker buildx build --load --platform linux/amd64 -t registry.heroku.com/upward-inv-api/web -f Dockerfile.api .
+
+.PHONY: push-heroku-api
+push-heroku-api:
+	docker push registry.heroku.com/upward-inv-api/web:latest
+
+.PHONY: build-heroku-frontend
+build-heroku-api:
+	docker buildx build --load --platform linux/amd64 -t registry.heroku.com/upward-inv/web -f Dockerfile.web .
+
+.PHONY: push-heroku-frontend
+push-heroku-api:
+	docker push registry.heroku.com/upward-inv/web:latest

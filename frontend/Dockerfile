@@ -8,12 +8,12 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY .npmrc ./
-COPY package*.json ./
+COPY ./frontend/.npmrc ./
+COPY ./frontend/package*.json ./
 RUN npm install
 
 # add app
-COPY . ./
+COPY ./frontend ./
 
 # start app
 CMD ["npm", "start"]

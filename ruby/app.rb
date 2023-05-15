@@ -230,7 +230,7 @@ get '/api/investments_transactions' do
 
     pretty_print_response(transactions_response.to_hash)
     content_type :json
-    { investments_transactions: investment_transactions.to_hash }.to_json
+    { investments_transactions: investment_transactions }.to_json
 
   rescue Plaid::ApiError => e
     error_response = format_error(e)

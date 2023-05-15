@@ -210,10 +210,28 @@ get '/api/investments_transactions' do
         end_date: end_date
       }
     )
+
     transactions_response = client.investments_transactions_get(investments_transactions_get_request)
+    investment_transactions = transactions_response.investments_transactions
+
+    while investments_transactions.length() < transactions_response.total_investment_transactions
+      investments_transactions_get_request = Plaid::InvestmentsTransactionsGetRequest.new(
+        {
+          access_token: access_token,
+          start_date: start_date,
+          end_date: end_date,
+          options: { offset: investment_transactions.length() }
+        }
+      )
+
+      transactions_response = client.investments_transactions_get(investments_transactions_get_request)
+      investment_transactions += transactions_response.investments_transactions
+    end
+
     pretty_print_response(transactions_response.to_hash)
     content_type :json
-    { investments_transactions: transactions_response.to_hash }.to_json
+    { investments_transactions: investment_transactions.to_hash }.to_json
+
   rescue Plaid::ApiError => e
     error_response = format_error(e)
     pretty_print_response(error_response)

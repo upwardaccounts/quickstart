@@ -1,7 +1,7 @@
 build:
   docker:
-    web: Dockerfile.api
-    # web: Dockerfile.web
+    # web: Dockerfile.api
+    web: Dockerfile.web
 run:
-  web: ruby app.rb -o 0.0.0.0
-  # web: npm start
+  # web: ruby app.rb -o 0.0.0.0
+  web: npm start

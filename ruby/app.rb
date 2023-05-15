@@ -202,7 +202,7 @@ end
 get '/api/investments_transactions' do
   begin
     start_date = Date.parse('2021-01-01')
-    end_date = Date.parse('2022-01-01')
+    end_date = Date.today
     investments_transactions_get_request = Plaid::InvestmentsTransactionsGetRequest.new(
       {
         access_token: access_token,
@@ -229,8 +229,11 @@ get '/api/investments_transactions' do
     end
 
     pretty_print_response(transactions_response.to_hash)
+    pretty_print_response(investment_transactions)
+    transactions_response.investment_transactions = investment_transactions
+
     content_type :json
-    { investments_transactions: investment_transactions }.to_json
+    { investments_transactions: transactions_response.to_hash }.to_json
 
   rescue Plaid::ApiError => e
     error_response = format_error(e)
@@ -587,6 +590,4 @@ def authorize_and_create_transfer(access_token, client)
     error_response = format_error(e)
     pretty_print_response(error_response)
   end
-
-
 end

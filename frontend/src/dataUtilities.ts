@@ -68,9 +68,18 @@ interface InvestmentsDataItem {
 }
 
 interface InvestmentsTransactionItem {
-  amount: number;
-  date: string;
   name: string;
+  amount: string;
+  date: string;
+  investmentTransactionId: string;
+  cancelTransactionId: string;
+  accountId: string;
+  securityId: string;
+  quantity: string;
+  price: string;
+  fees: string;
+  type: string;
+  subtype: string;
 }
 
 interface LiabilitiessDataItem {
@@ -244,9 +253,45 @@ export const investmentsTransactionsCategories: Array<Categories> = [
     field: "amount",
   },
   {
+    title: "Quantity",
+    field: "quantity",
+  },
+  {
+    title: "Price",
+    field: "price",
+  },
+  {
+    title: "Fees",
+    field: "fees",
+  },
+  {
     title: "Date",
     field: "date",
   },
+  {
+    title: "Investment Transaction ID",
+    field: "investmentTransactionId",
+  },
+  {
+    title: "Cancel Transaction ID",
+    field: "cancelTransactionId",
+  },
+  {
+    title: "Account ID",
+    field: "accountId",
+  },
+  {
+    title: "Security ID",
+    field: "securityId",
+  },
+  {
+    title: "Type",
+    field: "type",
+  },
+  {
+    title: "Subtype",
+    field: "subtype",
+  }
 ];
 
 export const liabilitiesCategories: Array<Categories> = [
@@ -523,8 +568,29 @@ export const transformInvestmentTransactionsData = (data: InvestmentsTransaction
 
     const obj: DataItem = {
       name: security.name!,
-      amount: investmentTransaction.amount,
+      amount: formatCurrency(
+        investmentTransaction.amount,
+        "USD"
+      ),
       date: investmentTransaction.date,
+      investmentTransactionId: investmentTransaction.investmentTransactionId,
+      cancelTransactionId: investmentTransaction.cancelTransactionId,
+      accountId: investmentTransaction.accountId,
+      securityId: investmentTransaction.securityId,
+      quantity: formatCurrency(
+        investmentTransaction.quantity,
+        ""
+      ),
+      price: formatCurrency(
+        investmentTransaction.price,
+        "USD"
+      ),
+      fees: formatCurrency(
+        investmentTransaction.fees,
+        "USD"
+      ),
+      type: investmentTransaction.type,
+      subtype: investmentTransaction.subtype
     };
     return obj;
   });

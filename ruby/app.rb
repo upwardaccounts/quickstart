@@ -201,7 +201,7 @@ end
 # https://plaid.com/docs/#investments
 get '/api/investments_transactions' do
   begin
-    start_date = (Date.today - 730)
+    start_date = (Date.today - 1730)
     end_date = Date.today
     investments_transactions_get_request = Plaid::InvestmentsTransactionsGetRequest.new(
       {

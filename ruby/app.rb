@@ -212,9 +212,9 @@ get '/api/investments_transactions' do
     )
 
     transactions_response = client.investments_transactions_get(investments_transactions_get_request)
-    investment_transactions = transactions_response.investments_transactions
+    investment_transactions = transactions_response.investment_transactions
 
-    while investments_transactions.length() < transactions_response.total_investment_transactions
+    while investment_transactions.length() < transactions_response.total_investment_transactions
       investments_transactions_get_request = Plaid::InvestmentsTransactionsGetRequest.new(
         {
           access_token: access_token,
@@ -225,7 +225,7 @@ get '/api/investments_transactions' do
       )
 
       transactions_response = client.investments_transactions_get(investments_transactions_get_request)
-      investment_transactions += transactions_response.investments_transactions
+      investment_transactions += transactions_response.investment_transactions
     end
 
     pretty_print_response(transactions_response.to_hash)

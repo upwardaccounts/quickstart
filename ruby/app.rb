@@ -201,8 +201,8 @@ end
 # https://plaid.com/docs/#investments
 get '/api/investments_transactions' do
   begin
-    start_date = Date.parse('2020-01-01')
-    end_date = Date.parse('2021-01-01')
+    start_date = Date.parse('2021-01-01')
+    end_date = Date.parse('2022-01-01')
     investments_transactions_get_request = Plaid::InvestmentsTransactionsGetRequest.new(
       {
         access_token: access_token,

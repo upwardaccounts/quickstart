@@ -8,5 +8,5 @@ RUN bundle update --bundler
 RUN bundle install
 
 EXPOSE 8000
-ENTRYPOINT ["ruby"]
-CMD ["app.rb", "-o", "0.0.0.0"]
+# ENTRYPOINT ["ruby"]
+# CMD ["app.rb", "-o", "0.0.0.0"]

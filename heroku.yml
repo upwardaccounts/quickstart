@@ -2,6 +2,8 @@ build:
   docker:
     backend: ruby/Dockerfile
     frontend: frontend/Dockerfile
+  config:
+    REACT_APP_API_HOST=http://ruby:8000
 run:
-  backend: ruby app.rb -o 0.0.0.0
+  backend: ruby ./ruby/app.rb -o 0.0.0.0
   frontend: npm start

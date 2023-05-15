@@ -2,8 +2,6 @@ build:
   docker:
     api: Dockerfile.api
     web: Dockerfile.web
-  config:
-    REACT_APP_API_HOST: http://ruby:8000
 run:
   api: ruby app.rb -o 0.0.0.0
   web: npm start
